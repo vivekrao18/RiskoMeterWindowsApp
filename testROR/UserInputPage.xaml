@@ -1,0 +1,138 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="testROR.PivotPage1"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <!--Pivot Control-->
+        <phone:Pivot x:Name="UserNavigation" Title="Risk - O - Meter" >
+            <phone:Pivot.Background>
+                <ImageBrush Stretch="None" ImageSource="/Assets/AlignmentGrid.png"/>
+            </phone:Pivot.Background>
+
+            <!--Pivot item one-->
+            <phone:PivotItem Header="Age" x:Name="Age">
+
+                <Grid Margin="-25,0,25,0" Loaded="ContentPanel_Loaded">
+
+                    <toolkit:PhoneTextBox Hint="          Between 10 - 130" HorizontalAlignment="Center" Height="72" Margin="51,229,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="395" InputScope="Number" MaxLength="3" Name="userEnteredAge" BorderThickness="3" TextAlignment="Center" TextInputUpdate="Age_entered"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="120,98,0,0" TextWrapping="Wrap" Text="Enter your Age" VerticalAlignment="Top" FontSize="40" RenderTransformOrigin="0.5,-0.331"/>
+                    <Button Content="Next" HorizontalAlignment="Left" Margin="154,412,0,0" VerticalAlignment="Top" Click="Age_entered" Width="194" Height="95"/>
+
+                </Grid>
+            </phone:PivotItem>
+
+            <!--Pivot item two-->
+            <phone:PivotItem Header="Gender" x:Name="Gender" >
+                <Grid Margin="-10,0,10,0" >
+                    <Button Name="Male" Content="Male" HorizontalAlignment="Left" Margin="10,229,0,0" VerticalAlignment="Top" Width="203" Height="88" Click="MaleSelected"/>
+                    <Button Name="Female" Content="Female" HorizontalAlignment="Left" Margin="243,229,0,0" VerticalAlignment="Top" Width="203" Height="88" Click="FemaleSelected"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="70,98,0,0" TextWrapping="Wrap" Text="Select your Gender" VerticalAlignment="Top" FontSize="40"/>
+
+                </Grid>
+            </phone:PivotItem>
+
+            <phone:PivotItem Header="Race" x:Name="Race" >
+                <StackPanel HorizontalAlignment="Left" Height="583" Margin="10,10,0,0" VerticalAlignment="Top" Width="436" >
+
+                    <RadioButton Name="AfricanAmerican" Content="African American" GroupName="Ethnicity" Checked="HandleChecked"/>
+                    <RadioButton Name="AmericanIndian"  Content="American Indian" GroupName="Ethnicity" Checked="HandleChecked"/>
+                    <RadioButton Name="Asian" Content="Asian" GroupName="Ethnicity" Checked="HandleChecked"/>
+                    <RadioButton Name="Caucasian" Content="Caucasian" GroupName="Ethnicity" Checked="HandleChecked"/>
+                    <RadioButton Name="HispanicLatino" Content="Hispanic / Latino" GroupName="Ethnicity" Checked="HandleChecked"/>
+                    <RadioButton Name="MultiRacial" Content="Multi Racial" GroupName="Ethnicity" Checked="HandleChecked"/>
+                    <RadioButton Name="PacificIslander" Content="Pacific Islander" GroupName="Ethnicity" Checked="HandleChecked"/>
+                    <RadioButton Name="Others" Content="Others" GroupName="Ethnicity" Checked="HandleChecked"/>
+
+                </StackPanel>
+            </phone:PivotItem>
+            <phone:PivotItem Header="Prior Hospitalization?" x:Name="PriorToHospitalization" >
+                <Grid>
+                    <Button Name="HospitalizationYes" Content="Yes" HorizontalAlignment="Left" Margin="10,229,0,0" VerticalAlignment="Top" Width="203" Height="88" Click="HospitalizationYes_Click" />
+                    <Button Name="HospitalizationNo" Content="No" HorizontalAlignment="Left" Margin="243,229,0,0" VerticalAlignment="Top" Width="203" Height="88" Click="HospitalizationNo_Click"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="20,86,0,0" TextWrapping="Wrap" Text="Prior Hospitalization for" VerticalAlignment="Top" FontSize="40" Width="436" Height="54"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="100,145,0,0" TextWrapping="Wrap" Text=" Heart Failure?" VerticalAlignment="Top" FontSize="40" Width="255" Height="54"/>
+
+                </Grid>
+            </phone:PivotItem>
+
+            <phone:PivotItem Header="Length of Stay" x:Name="LengthOfStay" IsEnabled="False">
+                <Grid Margin="-25,0,25,0"  >
+                     <toolkit:PhoneTextBox Hint="   Enter the number of days" HorizontalAlignment="Center" Margin="51,229,0,0" Height="72"  TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="395" InputScope="Number" MaxLength="2" Name="lengthofstay" BorderThickness="3" TextAlignment="Center"/>
+                    <TextBlock  HorizontalAlignment="Left" Margin="81,98,-20,0" TextWrapping="Wrap" Text="Prior Length of Stay" VerticalAlignment="Top" FontSize="40" RenderTransformOrigin="0.5,-0.331" Width="395" />
+                    <Button Content="Next" HorizontalAlignment="Left" Margin="154,412,0,0" VerticalAlignment="Top" Click="lengthOfStay_entered" Width="194" Height="95"/>
+
+                </Grid>
+
+            </phone:PivotItem>
+
+            <phone:PivotItem Header="Diabetes" x:Name="Diabetes">
+                <Grid>
+                    <Button Name="DiabetesYes" Content="Yes" HorizontalAlignment="Left" Margin="10,229,0,0" VerticalAlignment="Top" Width="203" Height="88" Click="DiabetesYes_Click" />
+                    <Button Name="DiabetesNo" Content="No" HorizontalAlignment="Left" Margin="243,229,0,0" VerticalAlignment="Top" Width="203" Height="88" Click="DiabetesNo_Click"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="20,98,0,0" TextWrapping="Wrap" Text="Do you have Diabetes ?" VerticalAlignment="Top" FontSize="40" Width="436"/>
+                </Grid>
+            </phone:PivotItem>
+            <phone:PivotItem Header="Stroke" x:Name="Stroke">
+                <Grid>
+                    <Button Name="StrokeYes" Content="Yes" HorizontalAlignment="Left" Margin="10,229,0,0" VerticalAlignment="Top" Width="203" Height="88" Click="StrokeYes_Click" />
+                    <Button Name="StrokeNo" Content="No" HorizontalAlignment="Left" Margin="243,229,0,0" VerticalAlignment="Top" Width="203" Height="88" Click="StrokeNo_Click"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="158,98,0,0" TextWrapping="Wrap" Text="Stroke ?" VerticalAlignment="Top" FontSize="40" RenderTransformOrigin="0.859,0.478"/>
+                </Grid>
+            </phone:PivotItem>
+            <phone:PivotItem x:Name="BP" Header="BP Category">
+                <Grid Margin="0,-28,0,0">
+                    <ScrollViewer HorizontalAlignment="Left" Height="606" Margin="10,0,0,0" VerticalAlignment="Top" Width="436">
+                        <StackPanel Height="811" Width="408">
+                            <RadioButton Content="&lt; 130/80" Name="BPC1" Checked="BPRadioChecked"/>
+                            <RadioButton Content="151-159 or 95-99" Name="BPC2" Checked="BPRadioChecked" />
+                            <RadioButton Content="130-139 / 80-89" Name="BPC3" Checked="BPRadioChecked"/>
+                            <RadioButton Content="140-150 or 90-95" Name="BPC4" Checked="BPRadioChecked"/>
+                            <RadioButton Content="160-180 or 100-110" Name="BPC5" Checked="BPRadioChecked"/>
+                            <RadioButton Content="130-139 / &lt; 80" Name="BPC6" Checked="BPRadioChecked"/>
+                            <RadioButton Content="181-200 or 100-110" Name="BPC7" Checked="BPRadioChecked"/>
+                            <RadioButton Content="201-219 or 100-110" Name="BPC8" Checked="BPRadioChecked"/>
+                            <RadioButton Content="&lt; 130 / 80-89" Name="BPC9" Checked="BPRadioChecked"/>
+                            <RadioButton Content=">=220 or >=120" Name="BPC10" Checked="BPRadioChecked"/>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </phone:PivotItem>
+            <phone:PivotItem Header="BMI" x:Name="BMI">
+                <Grid>
+
+                    <toolkit:PhoneTextBox Hint="   10 &lt; BMI &lt; 100  ( (lb) / [in]2 )" x:Name="userEnteredBMI" HorizontalAlignment="Left" Height="72" Margin="31,229,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="395" InputScope="Number" MaxLength="3" BorderThickness="3" TextAlignment="Center" />
+                    <TextBlock HorizontalAlignment="Left" Margin="100,98,0,0" TextWrapping="Wrap" Text="Enter your BMI" VerticalAlignment="Top" FontSize="40" RenderTransformOrigin="0.5,-0.331"/>
+                    <Button Content="Next" HorizontalAlignment="Left" Margin="131,412,0,0" VerticalAlignment="Top" Width="194" Height="95" Name="nextButtonBMI" Click="nextButtonBMI_Click"/>
+                </Grid>
+            </phone:PivotItem>
+            <phone:PivotItem Header="Ejection Fraction Value" x:Name="EFV" >
+                <Grid >
+                    <toolkit:PhoneTextBox Hint="        10 &lt; EFV &lt; 85 ( in % ) " x:Name="userEnteredEFV" HorizontalAlignment="Left" Height="72" Margin="29,229,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="395" InputScope="Number" MaxLength="3"  BorderThickness="3" TextAlignment="Center" />
+                    <TextBlock  HorizontalAlignment="Left" Margin="99,98,0,0" TextWrapping="Wrap" Text="Enter your EFV" VerticalAlignment="Top" FontSize="40" RenderTransformOrigin="0.5,-0.331"/>
+                    <Button Content="Calculate Risk" HorizontalAlignment="Left" Margin="129,412,0,0" VerticalAlignment="Top" Width="194" Height="95" Name="calculateRiskButton" Click="calculateRiskButton_Click"/>
+
+                </Grid>
+            </phone:PivotItem>
+            <phone:PivotItem Header="Calculate Risk">
+                <Grid>
+                    <Button Content="Calculate Risk" HorizontalAlignment="Left" Margin="83,247,0,0" VerticalAlignment="Top" Width="240" Height="95" Name="CalculateRisk" Click="calculateRiskButton_Click"/>
+                </Grid>
+            </phone:PivotItem>
+
+        </phone:Pivot>
+    </Grid>
+
+</phone:PhoneApplicationPage>
